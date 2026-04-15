@@ -29,10 +29,7 @@ class FraudDetectionModel(nn.Module):
         # ── ACTIVATION FUNCTIONS ──────────────────────────────
         # ReLU: used between layers, helps model learn non-linear patterns
         self.relu = nn.ReLU()
-        
-        # Sigmoid: converts final output to probability between 0 and 1
-        # 0.0 = definitely legit, 1.0 = definitely fraud
-        self.sigmoid = nn.Sigmoid()
+       
         
         # ── DROPOUT ───────────────────────────────────────────
         # Randomly turns off 30% of neurons during training
@@ -46,7 +43,7 @@ class FraudDetectionModel(nn.Module):
         x = self.dropout(x)              # dropout for regularization
         x = self.relu(self.layer2(x))   # layer1 → layer2 → relu
         x = self.dropout(x)              # dropout again
-        x = self.sigmoid(self.layer3(x)) # layer2 → output → sigmoid
+        x = self.layer3(x) # layer2 → output 
         
         return x
 
